@@ -18,6 +18,11 @@ const CarouselContainer = ({ data }) => {
 							src={item.webImage.url}
 							alt={item.title}
 						/>
+						<Carousel.Caption>
+							<p>
+								{item.title}, by {item.principalOrFirstMaker}
+							</p>
+						</Carousel.Caption>
 					</Carousel.Item>
 				);
 			})}

@@ -10,6 +10,8 @@ import Container from 'react-bootstrap/Container';
 //REACT COMPONENTS
 import CarouselContainer from './CarouselContainer';
 import Navigation from './Navigation';
+import About from './About';
+
 class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -28,6 +30,7 @@ class App extends React.Component {
 							path='/home'
 							render={() => <CarouselContainer data={this.state.data} />}
 						/>
+						<Route exact path='/about' component={About} />
 					</Switch>
 				</HashRouter>
 			</Container>
