@@ -3,14 +3,14 @@ import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 const CarouselContainer = ({ data }) => {
 	return (
-		<Carousel>
+		<Carousel style={{ minHeight: '90vh' }}>
 			{data.map((item) => {
 				return (
-					<Carousel.Item key={item.id}>
+					<Carousel.Item key={item.id} style={{ maxHeight: '90vh' }}>
 						<img
 							className='d-block w-100'
 							style={{
-								height: '100%',
+								height: '90vh',
 								width: '100%',
 								objectFit: 'cover',
 								overflow: 'hidden',
@@ -19,9 +19,7 @@ const CarouselContainer = ({ data }) => {
 							alt={item.title}
 						/>
 						<Carousel.Caption>
-							<p>
-								{item.title}, by {item.principalOrFirstMaker}
-							</p>
+							<p>{item.longTitle}</p>
 						</Carousel.Caption>
 					</Carousel.Item>
 				);

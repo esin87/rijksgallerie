@@ -16,6 +16,9 @@ const Navigation = () => {
 					<LinkContainer to='/home'>
 						<Nav.Link>Home</Nav.Link>
 					</LinkContainer>
+					<LinkContainer to='/gallery'>
+						<Nav.Link>Gallery</Nav.Link>
+					</LinkContainer>
 					<LinkContainer to='/search'>
 						<Nav.Link>Search</Nav.Link>
 					</LinkContainer>
