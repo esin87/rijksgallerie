@@ -2,12 +2,14 @@
 import React from 'react';
 import './App.css';
 import data from './data.json';
+import { Switch, Route, Redirect, HashRouter } from 'react-router-dom';
+
 //BOOTSTRAP COMPONENTS
 import Container from 'react-bootstrap/Container';
 
 //REACT COMPONENTS
 import CarouselContainer from './CarouselContainer';
-
+import Navigation from './Navigation';
 class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -17,8 +19,17 @@ class App extends React.Component {
 	}
 	render() {
 		return (
-			<Container>
-				<CarouselContainer data={this.state.data} />
+			<Container style={{ maxHeight: '100%' }}>
+				<HashRouter basename='/'>
+					<Navigation />
+					<Switch>
+						<Route
+							exact
+							path='/home'
+							render={() => <CarouselContainer data={this.state.data} />}
+						/>
+					</Switch>
+				</HashRouter>
 			</Container>
 		);
 	}
