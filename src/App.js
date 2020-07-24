@@ -1,4 +1,6 @@
+//////App.js
 import React from 'react';
+import './App.css';
 import data from './data.json';
 //BOOTSTRAP COMPONENTS
 import Container from 'react-bootstrap/Container';
