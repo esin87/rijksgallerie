@@ -7,13 +7,13 @@ import { LinkContainer } from 'react-router-bootstrap';
 const Navigation = () => {
 	return (
 		<Navbar collapseOnSelect variant='light' expand='md'>
-			<LinkContainer to='/home'>
+			<LinkContainer to='/'>
 				<Navbar.Brand>Rijksgallerie</Navbar.Brand>
 			</LinkContainer>
 			<Navbar.Toggle aria-controls='basic-navbar-nav' />
 			<Navbar.Collapse id='basic-navbar-nav'>
 				<Nav>
-					<LinkContainer to='/home'>
+					<LinkContainer to='/'>
 						<Nav.Link>Home</Nav.Link>
 					</LinkContainer>
 					<LinkContainer to='/gallery'>

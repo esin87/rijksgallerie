@@ -2,9 +2,6 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
-import Alert from 'react-bootstrap/Alert';
-
-// import objectDetail from './objectdetail.json';
 
 const Detail = ({ error, objectDetail, show, handleClose }) => {
 	if (!error) {
@@ -20,7 +17,14 @@ const Detail = ({ error, objectDetail, show, handleClose }) => {
 				<Image fluid src={objectDetail.artObject.webImage.url} />
 				<Modal.Body>
 					<p>{objectDetail.artObject.label.makerLine}</p>
-					<p>Description: {objectDetail.artObjectPage.plaqueDescription}</p>
+					<p>
+						Description:{' '}
+						{objectDetail.artObjectPage.plaqueDescription ? (
+							objectDetail.artObjectPage.plaqueDescription
+						) : (
+							<span style={{ fontStyle: 'italic' }}>Not available</span>
+						)}
+					</p>
 				</Modal.Body>
 				<Modal.Footer>
 					<Button variant='secondary' onClick={handleClose}>
