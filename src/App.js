@@ -21,16 +21,13 @@ class App extends React.Component {
 			data: data,
 			galleryImages: artobjects,
 		};
-	}
 
-	handleSearch = () => {
 		this.searchOptions = {
 			key: process.env.REACT_APP_RIJKS_KEY,
-			api: 'https://www.rijksmuseum.nl/en?',
-			endpoint: '/search',
-			queryParams: 'p=1&ps=12&st=Objects&ii=0',
+			url: 'https://www.rijksmuseum.nl/api/en/',
 		};
-	};
+		
+	}
 
 	render() {
 		return (
@@ -47,7 +44,12 @@ class App extends React.Component {
 						<Route
 							exact
 							path='/gallery'
-							render={() => <Gallery images={this.state.galleryImages} />}
+							render={() => (
+								<Gallery
+									searchOptions={this.searchOptions}
+									images={this.state.galleryImages}
+								/>
+							)}
 						/>
 					</Switch>
 				</HashRouter>
