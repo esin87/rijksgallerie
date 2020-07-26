@@ -19,12 +19,13 @@ class App extends React.Component {
 		this.state = {
 			data: data,
 			galleryImages: '',
+			carouselImages: '',
 		};
 
 		this.searchOptions = {
 			key: process.env.REACT_APP_RIJKS_KEY,
 			url: 'https://www.rijksmuseum.nl/api/en',
-			numberOfResults: 20,
+			numberOfResults: 50,
 		};
 	}
 
@@ -41,30 +42,33 @@ class App extends React.Component {
 			<Container>
 				<HashRouter basename='/'>
 					<Navigation />
-					<Switch>
-						<Route
-							exact
-							path='/'
-							render={() => <CarouselContainer data={this.state.data} />}
-						/>
-						<Route exact path='/about' component={About} />
-						<Route
-							exact
-							path='/gallery'
-							render={() => (
-								<Gallery
-									searchOptions={this.searchOptions}
-									images={this.state.galleryImages}
-									getGalleryImages={this.getGalleryImages}
-								/>
-							)}
-						/>
-						<Route
-							exact
-							path='/search'
-							render={() => <Search searchOptions={this.searchOptions} />}
-						/>
-					</Switch>
+					<main>
+						<Switch>
+							<Route
+								exact
+								path='/home'
+								render={() => <CarouselContainer data={this.state.data} />}
+							/>
+							<Route exact path='/about' component={About} />
+							<Route
+								exact
+								path='/gallery'
+								render={() => (
+									<Gallery
+										searchOptions={this.searchOptions}
+										images={this.state.galleryImages}
+										getGalleryImages={this.getGalleryImages}
+									/>
+								)}
+							/>
+							<Route
+								exact
+								path='/search'
+								render={() => <Search searchOptions={this.searchOptions} />}
+							/>
+							<Redirect path='*' to='/home' />
+						</Switch>
+					</main>
 				</HashRouter>
 			</Container>
 		);

@@ -12,8 +12,7 @@ const SearchForm = ({ handleSubmit, handleChange, searchString }) => {
 					<Form.Group>
 						<Form.Control
 							size='sm'
-							placeholder='Search by  full artist name, i.e., "Rembrandt van Rijn" or "Jan
-							Both"'
+							placeholder='Search by any query'
 							type='text'
 							name='searchString'
 							required
@@ -21,6 +20,9 @@ const SearchForm = ({ handleSubmit, handleChange, searchString }) => {
 							value={searchString}
 						/>
 					</Form.Group>
+					<Form.Text className='text-muted'>
+						Search by any query, such as artist name, e.g., "Vermeer"
+					</Form.Text>
 				</Col>
 				<Col md='auto'>
 					<Button type='submit' variant='dark' className='btn-sm'>

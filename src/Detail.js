@@ -14,7 +14,9 @@ const Detail = ({ error, objectDetail, show, handleClose }) => {
 				<Modal.Header closeButton>
 					<Modal.Title>{objectDetail.artObject.longTitle}</Modal.Title>
 				</Modal.Header>
-				<Image fluid src={objectDetail.artObject.webImage.url} />
+				{objectDetail.artObject.webImage && (
+					<Image fluid src={objectDetail.artObject.webImage.url} />
+				)}
 				<Modal.Body>
 					<p>{objectDetail.artObject.label.makerLine}</p>
 					<p>

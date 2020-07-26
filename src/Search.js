@@ -26,12 +26,13 @@ class Search extends React.Component {
 
 	getData(searchString) {
 		if (searchString) {
-			const url = `${this.props.searchOptions.url}/collection?key=${this.props.searchOptions.key}&involvedMaker=${this.state.searchString}&ps=50`;
+			const url = `${this.props.searchOptions.url}/collection?key=${this.props.searchOptions.key}&q=${this.state.searchString}&ps=50`;
 			fetch(url)
 				.then((res) => res.json())
 				.then((res) => {
 					console.log(res.artObjects);
 					this.setState({
+						error: false,
 						galleryImages: res.artObjects,
 						setSearch: true,
 						searchString: '',
@@ -76,9 +77,7 @@ class Search extends React.Component {
 				{this.state.setSearch && this.state.error && (
 					<p>
 						No results found for{' '}
-						<span style={{ fontStyle: 'italic' }}>
-							{this.state.lastSearch}:
-						</span>
+						<span style={{ fontStyle: 'italic' }}>{this.state.lastSearch}</span>
 						. Please try another search
 					</p>
 				)}

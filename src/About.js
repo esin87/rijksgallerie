@@ -16,13 +16,13 @@ const About = () => {
 					style={{ paddingBottom: '1em' }}
 				/>
 				<p>
-					Rijksgalleria is a frontend interface for users to interact with the
-					Rijksmuseum API. The Rijksmuseum is a collection of Dutch art and
-					history from the Middle Ages to the present day, located in Amsterdam.
-					Also known as the Museum of Rembrandt, Rijksmuseum showcases the
-					finest art of the Netherlands.
+					Rijksgallerie is an application for users to interact with the
+					Rijksmuseum API. The Rijksmuseum is a collection of Dutch and
+					international art and history from the Middle Ages to the present day,
+					located in Amsterdam. Also known as the Museum of Rembrandt,
+					Rijksmuseum showcases the finest art from the Netherlands and all over
+					the world.
 				</p>
-
 				<p>
 					The Rijksmuseum{' '}
 					<a
@@ -39,8 +39,17 @@ const About = () => {
 				<p>
 					This application functions as a tutorial in implementing
 					React-Bootstrap in particular, but also covers React topics such as
-					state and props, React Router, API calls and lifecycle methods.
+					state and props, React Router, API calls and lifecycle methods. See
+					source code{' '}
+					<a
+						href='https://github.com/esin87/rijksgallerie'
+						target='_blank'
+						rel='noopener noreferrer'>
+						here
+					</a>
+					.
 				</p>
+
 				<Button
 					variant='dark'
 					href='https://www.rijksmuseum.nl/en?gclid=Cj0KCQjwjer4BRCZARIsABK4QeUUFzwBJPadQZccDkK-omN8hdV_yvVpntofcNaAcvMkW2JIDPHMh7IaAuuhEALw_wcB'
