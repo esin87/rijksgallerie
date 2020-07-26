@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import CardColumns from 'react-bootstrap/CardColumns';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
+import Container from 'react-bootstrap/Container';
 
 import Detail from './Detail.js';
 class Gallery extends React.Component {
@@ -91,10 +92,12 @@ class Gallery extends React.Component {
 			);
 		} else {
 			return (
-				<div>
-					Loading results{' '}
+				<Container
+					className='d-flex  justify-content-center align-items-center align-content-center'
+					style={{ minHeight: '90vh' }}>
+					<span style={{ paddingRight: '1em' }}>Loading results{'  '}</span>
 					<Spinner animation='border' variant='dark' size='sm' />
-				</div>
+				</Container>
 			);
 		}
 	}
