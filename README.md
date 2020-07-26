@@ -1,6 +1,6 @@
-# Rijksgallerie
+# Rijksgalerij
 
-This application provides users with a portal to the Rijksmuseum [API](https://data.rijksmuseum.nl/). See the deployed site [here](https://rijksgallerie.herokuapp.com/).
+This application provides users with a portal to the Rijksmuseum [API](https://data.rijksmuseum.nl/) and serves as a miniature art gallery accessing the Rijksmuseum collection. See the deployed site [here](https://rijksgalerij.herokuapp.com/).
 
 ## Technologies Used
 

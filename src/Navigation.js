@@ -8,7 +8,7 @@ const Navigation = () => {
 	return (
 		<Navbar collapseOnSelect variant='light' expand='md'>
 			<LinkContainer to='/home'>
-				<Navbar.Brand>Rijksgallerie</Navbar.Brand>
+				<Navbar.Brand>Rijksgalerij</Navbar.Brand>
 			</LinkContainer>
 			<Navbar.Toggle aria-controls='basic-navbar-nav' />
 			<Navbar.Collapse id='basic-navbar-nav'>

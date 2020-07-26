@@ -8,7 +8,7 @@ const About = () => {
 	return (
 		<Jumbotron>
 			<Container>
-				<h1>About Rijksgallerie</h1>
+				<h1>About Rijksgalerij</h1>
 				<Image
 					fluid
 					src='https://lh3.googleusercontent.com/O7ES8hCeygPDvHSob5Yl4bPIRGA58EoCM-ouQYN6CYBw5jlELVqk2tLkHF5C45JJj-5QBqF6cA6zUfS66PUhQamHAw=s0'
@@ -16,7 +16,7 @@ const About = () => {
 					style={{ paddingBottom: '1em' }}
 				/>
 				<p>
-					Rijksgallerie is an application for users to interact with the
+					Rijksgalerij is an application for users to interact with the
 					Rijksmuseum API. The Rijksmuseum is a collection of Dutch and
 					international art and history from the Middle Ages to the present day,
 					located in Amsterdam. Also known as the Museum of Rembrandt,
@@ -33,7 +33,7 @@ const About = () => {
 					</a>{' '}
 					makes the museum website's collection accessible to developers all
 					over the world, and inspired the creation of this application,
-					Rijksgallerie. This allows users to search for and view art by
+					Rijksgalerij. This allows users to search for and view art by
 					Rembrandt, Vermeer, Both and other Dutch and international artists.
 				</p>
 				<p>
@@ -42,7 +42,7 @@ const About = () => {
 					state and props, React Router, API calls and lifecycle methods. See
 					source code{' '}
 					<a
-						href='https://github.com/esin87/rijksgallerie'
+						href='https://github.com/esin87/rijksgalerij'
 						target='_blank'
 						rel='noopener noreferrer'>
 						here
