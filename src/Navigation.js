@@ -13,7 +13,7 @@ const Navigation = () => {
 			<Navbar.Toggle aria-controls='basic-navbar-nav' />
 			<Navbar.Collapse id='basic-navbar-nav'>
 				<Nav>
-					<LinkContainer to='/'>
+					<LinkContainer to='/home'>
 						<Nav.Link>Home</Nav.Link>
 					</LinkContainer>
 					<LinkContainer to='/gallery'>

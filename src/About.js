@@ -1,3 +1,4 @@
+//////About.js
 import React from 'react';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button';
@@ -35,19 +36,6 @@ const About = () => {
 					over the world, and inspired the creation of this application,
 					Rijksgalerij. This allows users to search for and view art by
 					Rembrandt, Vermeer, Both and other Dutch and international artists.
-				</p>
-				<p>
-					This application functions as a tutorial in implementing
-					React-Bootstrap in particular, but also covers React topics such as
-					state and props, React Router, API calls and lifecycle methods. See
-					source code{' '}
-					<a
-						href='https://github.com/esin87/rijksgalerij'
-						target='_blank'
-						rel='noopener noreferrer'>
-						here
-					</a>
-					.
 				</p>
 
 				<Button

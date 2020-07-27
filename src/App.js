@@ -17,9 +17,7 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			data: data,
 			galleryImages: '',
-			carouselImages: '',
 		};
 
 		this.searchOptions = {
@@ -47,7 +45,7 @@ class App extends React.Component {
 							<Route
 								exact
 								path='/home'
-								render={() => <CarouselContainer data={this.state.data} />}
+								render={() => <CarouselContainer data={data} />}
 							/>
 							<Route exact path='/about' component={About} />
 							<Route
