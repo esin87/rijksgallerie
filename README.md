@@ -8,6 +8,20 @@ This application provides users with a portal to the Rijksmuseum [API](https://d
 - React Router for page navigation
 - React Bootstrap for styled components
 
+## Screenshots
+
+### Homepage
+
+![Homepage screenshot](https://i.imgur.com/OxNGx2Nh.jpg)
+
+### Gallery
+
+![Gallery screenshot](https://i.imgur.com/TxIIsq2h.png)
+
+### Search
+
+![Search screenshot](https://i.imgur.com/6szIStMh.png)
+
 ## Feature Plan
 
 ### MVP/Current Features
