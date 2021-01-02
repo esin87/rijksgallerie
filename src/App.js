@@ -23,17 +23,36 @@ class App extends React.Component {
 		this.searchOptions = {
 			key: process.env.REACT_APP_RIJKS_KEY,
 			url: 'https://www.rijksmuseum.nl/api/en',
-			numberOfResults: 50,
+			numberOfResults: 12,
+			page: 1,
 		};
 	}
 
 	getGalleryImages = () => {
-		const url = `${this.searchOptions.url}/collection?key=${this.searchOptions.key}&ps=${this.searchOptions.numberOfResults}`;
+		const url = `${this.searchOptions.url}/collection?key=${this.searchOptions.key}&ps=${this.searchOptions.numberOfResults}&p=${this.searchOptions.page}`;
 		fetch(url)
 			.then((res) => res.json())
-			.then((res) => this.setState({ galleryImages: res.artObjects }))
+			.then((res) =>
+				this.setState({
+					galleryImages: res.artObjects,
+				})
+			)
 			.catch((err) => console.error(err));
 	};
+
+	getMoreImages = () => {
+		this.searchOptions.page++;
+		const url = `${this.searchOptions.url}/collection?key=${this.searchOptions.key}&ps=${this.searchOptions.numberOfResults}&p=${this.searchOptions.page}`;
+		fetch(url)
+			.then((res) => res.json())
+			.then((res) => {
+				this.setState((prevState) => ({
+					galleryImages: [...prevState.galleryImages, ...res.artObjects],
+				}));
+			})
+			.catch((err) => console.error(err));
+	};
+
 
 	render() {
 		return (
@@ -56,6 +75,7 @@ class App extends React.Component {
 										searchOptions={this.searchOptions}
 										images={this.state.galleryImages}
 										getGalleryImages={this.getGalleryImages}
+										getMoreImages={this.getMoreImages}
 									/>
 								)}
 							/>
