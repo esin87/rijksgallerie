@@ -7,6 +7,7 @@ This application provides users with a portal to the Rijksmuseum [API](https://d
 - React for a SPA with dynamic client-side rendering
 - React Router for page navigation
 - React Bootstrap for styled components
+- React Infinite Scroll Component
 
 ## Screenshots
 
@@ -32,9 +33,10 @@ This application provides users with a portal to the Rijksmuseum [API](https://d
 
 ### Future Features
 
-- Add infinite scroll to load more results
-- Save search results after navigating away from search page
-- Testing coverage
+- [x] Add infinite scroll to Gallery to load more results
+- [x] Add infinite scroll to Search results
+- [ ] Save search results after navigating away from search page
+- [ ] Testing coverage
 
 ## Installation Instructions
 
