@@ -30,7 +30,6 @@ class Search extends React.Component {
 			fetch(url)
 				.then((res) => res.json())
 				.then((res) => {
-					console.log(res.artObjects);
 					this.setState({
 						error: false,
 						galleryImages: res.artObjects,
