@@ -13,6 +13,7 @@ class Search extends React.Component {
 			setSearch: false,
 			error: false,
 		};
+		this.page = 1;
 	}
 
 	handleChange = (event) => {
@@ -25,8 +26,9 @@ class Search extends React.Component {
 	};
 
 	getData(searchString) {
+		this.page = 1;
 		if (searchString) {
-			const url = `${this.props.searchOptions.url}/collection?key=${this.props.searchOptions.key}&q=${this.state.searchString}&ps=50`;
+			const url = `${this.props.searchOptions.url}/collection?key=${this.props.searchOptions.key}&q=${this.state.searchString}&ps=14&p=${this.page}`;
 			fetch(url)
 				.then((res) => res.json())
 				.then((res) => {
@@ -50,6 +52,19 @@ class Search extends React.Component {
 		}
 	}
 
+	getMoreData = () => {
+		this.page++;
+		const url = `${this.props.searchOptions.url}/collection?key=${this.props.searchOptions.key}&q=${this.state.lastSearch}&ps=14&p=${this.page}`;
+		fetch(url)
+			.then((res) => res.json())
+			.then((res) => {
+				this.setState((prevState) => ({
+					galleryImages: [...prevState.galleryImages, ...res.artObjects],
+				}));
+			})
+			.catch(console.error);
+	};
+
 	render() {
 		return (
 			<Container>
@@ -70,6 +85,7 @@ class Search extends React.Component {
 							images={this.state.galleryImages}
 							getGalleryImages={this.getData}
 							searchOptions={this.props.searchOptions}
+							getMoreImages={this.getMoreData}
 						/>
 					</>
 				)}

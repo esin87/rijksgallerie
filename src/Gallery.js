@@ -21,7 +21,7 @@ class Gallery extends React.Component {
 	}
 
 	componentDidMount() {
-		if (!this.props.length) this.props.getGalleryImages();
+		if (!this.props.images.length) this.props.getGalleryImages();
 	}
 
 	handleShow = () => {

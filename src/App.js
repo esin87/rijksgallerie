@@ -80,9 +80,13 @@ class App extends React.Component {
 								)}
 							/>
 							<Route
-								exact
 								path='/search'
-								render={() => <Search searchOptions={this.searchOptions} />}
+								render={(routerProps) => (
+									<Search
+										searchOptions={this.searchOptions}
+										routerProps={routerProps}
+									/>
+								)}
 							/>
 							<Redirect path='*' to='/home' />
 						</Switch>
