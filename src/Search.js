@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import SearchForm from './SearchForm';
@@ -15,14 +15,8 @@ const Search = ({
 	searchOptions,
 	getMoreSearchImages,
 	error,
-	clearSearch,
 }) => {
 	let history = useHistory();
-
-	// useEffect(() => {
-	// 	return clearSearch();
-	// 	//eslint-disable-next-line
-	// }, []);
 
 	function handleSubmit(event) {
 		event.preventDefault();

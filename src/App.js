@@ -23,7 +23,6 @@ class App extends React.Component {
 			searchImages: '',
 			searchString: '',
 			lastSearch: '',
-			// redirect: false,
 			setSearch: false,
 			error: false,
 		};
@@ -66,11 +65,10 @@ class App extends React.Component {
 		this.page = 1;
 		if (searchString) {
 			const url = `${this.searchOptions.url}/collection?key=${this.searchOptions.key}&q=${this.state.searchString}&ps=14&p=${this.page}`;
-			console.log(url);
+
 			fetch(url)
 				.then((res) => res.json())
 				.then((res) => {
-					console.log('calling get search images');
 					this.setState({
 						error: false,
 						searchImages: res.artObjects,
