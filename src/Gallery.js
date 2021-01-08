@@ -56,7 +56,7 @@ class Gallery extends React.Component {
 			return (
 				<InfiniteScroll
 					dataLength={this.props.images.length}
-					next={this.props.getMoreImages}
+					next={this.props.getMoreGalleryImages}
 					hasMore={true}
 					loader={
 						<Container

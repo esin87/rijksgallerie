@@ -13,11 +13,18 @@ import Navigation from './Navigation';
 import About from './About';
 import Gallery from './Gallery';
 import Search from './Search';
+// import SearchResults from './SearchResults';
+
 class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			galleryImages: '',
+			searchImages: '',
+			searchString: '',
+			lastSearch: '',
+			setSearch: false,
+			error: false,
 		};
 
 		this.searchOptions = {
@@ -41,7 +48,7 @@ class App extends React.Component {
 			.catch((err) => console.error(err));
 	};
 
-	getMoreImages = () => {
+	getMoreGalleryImages = () => {
 		this.searchOptions.page++;
 		const url = `${this.searchOptions.url}/collection?key=${this.searchOptions.key}&ps=${this.searchOptions.numberOfResults}&p=${this.searchOptions.page}`;
 		fetch(url)
@@ -52,6 +59,55 @@ class App extends React.Component {
 				}));
 			})
 			.catch((err) => console.error(err));
+	};
+
+	getSearchImages = (searchString) => {
+		this.page = 1;
+		if (searchString) {
+			const url = `${this.searchOptions.url}/collection?key=${this.searchOptions.key}&q=${this.state.searchString}&ps=14&p=${this.page}`;
+
+			fetch(url)
+				.then((res) => res.json())
+				.then((res) => {
+					this.setState({
+						error: false,
+						searchImages: res.artObjects,
+						setSearch: true,
+						searchString: '',
+						lastSearch: this.state.searchString,
+					});
+				})
+				.then((res) => {
+					if (!this.state.searchImages.length) {
+						this.setState({ error: true });
+					}
+				})
+				.catch((err) => {
+					console.error(err);
+					this.setState({ error: true });
+				});
+		}
+	};
+
+	getMoreSearchImages = () => {
+		this.page++;
+		const url = `${this.searchOptions.url}/collection?key=${this.searchOptions.key}&q=${this.state.lastSearch}&ps=14&p=${this.page}`;
+		fetch(url)
+			.then((res) => res.json())
+			.then((res) => {
+				this.setState((prevState) => ({
+					searchImages: [...prevState.searchImages, ...res.artObjects],
+				}));
+			})
+			.catch(console.error);
+	};
+
+	handleChange = (event) => {
+		this.setState({ searchString: event.target.value });
+	};
+
+	clearSearch = () => {
+		this.setState({ searchString: '', searchImages: '', setSearch: false });
 	};
 
 	render() {
@@ -75,7 +131,7 @@ class App extends React.Component {
 										searchOptions={this.searchOptions}
 										images={this.state.galleryImages}
 										getGalleryImages={this.getGalleryImages}
-										getMoreImages={this.getMoreImages}
+										getMoreGalleryImages={this.getMoreGalleryImages}
 									/>
 								)}
 							/>
@@ -84,7 +140,16 @@ class App extends React.Component {
 								render={(routerProps) => (
 									<Search
 										searchOptions={this.searchOptions}
+										handleChange={this.handleChange}
+										searchString={this.state.searchString}
+										lastSearch={this.state.lastSearch}
 										routerProps={routerProps}
+										getSearchImages={this.getSearchImages}
+										getMoreSearchImages={this.getMoreSearchImages}
+										setSearch={this.state.setSearch}
+										error={this.state.error}
+										searchImages={this.state.searchImages}
+										clearSearch={this.clearSearch}
 									/>
 								)}
 							/>
