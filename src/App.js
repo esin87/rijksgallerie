@@ -13,7 +13,6 @@ import Navigation from './Navigation';
 import About from './About';
 import Gallery from './Gallery';
 import Search from './Search';
-// import SearchResults from './SearchResults';
 
 class App extends React.Component {
 	constructor(props) {
@@ -106,10 +105,6 @@ class App extends React.Component {
 		this.setState({ searchString: event.target.value });
 	};
 
-	clearSearch = () => {
-		this.setState({ searchString: '', searchImages: '', setSearch: false });
-	};
-
 	render() {
 		return (
 			<Container>
@@ -149,7 +144,6 @@ class App extends React.Component {
 										setSearch={this.state.setSearch}
 										error={this.state.error}
 										searchImages={this.state.searchImages}
-										clearSearch={this.clearSearch}
 									/>
 								)}
 							/>
