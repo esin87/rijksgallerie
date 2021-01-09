@@ -13,7 +13,6 @@ import Navigation from './Navigation';
 import About from './About';
 import Gallery from './Gallery';
 import Search from './Search';
-// import SearchResults from './SearchResults';
 
 class App extends React.Component {
 	constructor(props) {
@@ -115,6 +114,7 @@ class App extends React.Component {
 			<Container>
 				<HashRouter basename='/'>
 					<Navigation />
+
 					<main>
 						<Switch>
 							<Route
