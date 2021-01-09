@@ -110,6 +110,7 @@ class App extends React.Component {
 			<Container>
 				<HashRouter basename='/'>
 					<Navigation />
+
 					<main>
 						<Switch>
 							<Route
