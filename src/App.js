@@ -105,10 +105,6 @@ class App extends React.Component {
 		this.setState({ searchString: event.target.value });
 	};
 
-	clearSearch = () => {
-		this.setState({ searchString: '', searchImages: '', setSearch: false });
-	};
-
 	render() {
 		return (
 			<Container>
@@ -149,7 +145,6 @@ class App extends React.Component {
 										setSearch={this.state.setSearch}
 										error={this.state.error}
 										searchImages={this.state.searchImages}
-										clearSearch={this.clearSearch}
 									/>
 								)}
 							/>
