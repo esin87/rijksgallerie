@@ -1,5 +1,5 @@
 //////CarouselContainer.js
-import React, { useState } from 'react';
+import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import { CSSTransitionGroup } from 'react-transition-group';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -18,8 +18,6 @@ const CarouselContainer = ({ data }) => {
 						<Carousel
 							style={{
 								minHeight: '90vh',
-								width: '100%',
-								backgroundColor: 'black',
 							}}
 							interval={2000}>
 							{data.map((item) => {
@@ -28,13 +26,11 @@ const CarouselContainer = ({ data }) => {
 										key={item.id}
 										style={{
 											maxHeight: '90vh',
-											width: '100%',
 										}}>
 										<img
 											className='d-block w-100'
 											style={{
 												height: '90vh',
-												width: '100%',
 												objectFit: 'cover',
 												overflow: 'hidden',
 											}}
