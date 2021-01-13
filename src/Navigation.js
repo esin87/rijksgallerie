@@ -33,12 +33,12 @@ const Navigation = ({ darkScheme, toggleDarkScheme }) => {
 			</Navbar.Collapse>
 			{darkScheme === 'on' ? (
 				<i
-					class='fas fa-toggle-off fa-lg'
+					className='fas fa-toggle-off fa-lg'
 					onClick={toggleDarkScheme}
 					style={{ cursor: 'pointer', color: '#f7f7f7' }}></i>
 			) : (
 				<i
-					class='fas fa-toggle-on fa-lg'
+					className='fas fa-toggle-on fa-lg'
 					onClick={toggleDarkScheme}
 					style={{ cursor: 'pointer' }}></i>
 			)}

@@ -62,7 +62,11 @@ class Gallery extends React.Component {
 						<Container
 							className='d-flex  justify-content-center align-items-center align-content-center'
 							style={{ minHeight: '10vh' }}>
-							<span style={{ paddingRight: '1em' }}>
+							<span
+								style={{
+									paddingRight: '1em',
+									color: this.props.darkScheme === 'on' ? 'white' : '',
+								}}>
 								Loading more results ...
 							</span>
 						</Container>
@@ -80,7 +84,13 @@ class Gallery extends React.Component {
 											lg={4}
 											xl={3}
 											style={{ marginTop: '1em' }}>
-											<Card>
+											<Card
+												style={{
+													border:
+														this.props.darkScheme === 'on'
+															? '1px solid black'
+															: '',
+												}}>
 												{object.webImage && (
 													<Card.Img
 														variant='top'
@@ -88,7 +98,11 @@ class Gallery extends React.Component {
 														alt={object.title}
 													/>
 												)}
-												<Card.Body>
+												<Card.Body
+													style={{
+														backgroundColor:
+															this.props.darkScheme === 'on' ? '#292b2c' : '',
+													}}>
 													{object.webImage ? (
 														''
 													) : (
@@ -99,7 +113,11 @@ class Gallery extends React.Component {
 													</Card.Text>
 													<Button
 														onClick={() => this.getDetail(object.objectNumber)}
-														variant='outline-dark'>
+														variant={
+															this.props.darkScheme === 'on'
+																? 'dark'
+																: 'outline-dark'
+														}>
 														Details
 													</Button>
 												</Card.Body>
@@ -126,7 +144,11 @@ class Gallery extends React.Component {
 					className='d-flex  justify-content-center align-items-center align-content-center'
 					style={{ minHeight: '90vh' }}>
 					<span style={{ paddingRight: '1em' }}>Loading results{'  '}</span>
-					<Spinner animation='border' variant='dark' size='sm' />
+					<Spinner
+						animation='border'
+						variant={this.props.darkScheme === 'on' ? 'light' : 'dark'}
+						size='sm'
+					/>
 				</Container>
 			);
 		}

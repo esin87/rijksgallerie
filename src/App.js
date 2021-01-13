@@ -122,7 +122,8 @@ class App extends React.Component {
 			<div
 				style={{
 					backgroundColor: this.state.darkScheme === 'on' ? '#292b2c' : '',
-					height: '100vh',
+					height: '100%',
+					minHeight: '100vh',
 				}}>
 				<Container
 					style={{
@@ -150,6 +151,7 @@ class App extends React.Component {
 											images={this.state.galleryImages}
 											getGalleryImages={this.getGalleryImages}
 											getMoreGalleryImages={this.getMoreGalleryImages}
+											darkScheme={this.state.darkScheme}
 										/>
 									)}
 								/>
