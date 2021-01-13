@@ -6,7 +6,11 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 const Navigation = ({ darkScheme, toggleDarkScheme }) => {
 	return (
-		<Navbar collapseOnSelect variant='light' expand='md'>
+		<Navbar
+			collapseOnSelect
+			variant={darkScheme === 'on' ? 'dark' : 'light'}
+			style={{ backgroundColor: darkScheme === 'on' ? '#292b2c' : '' }}
+			expand='md'>
 			<LinkContainer to='/home'>
 				<Navbar.Brand>Rijksgalerij</Navbar.Brand>
 			</LinkContainer>
@@ -31,7 +35,7 @@ const Navigation = ({ darkScheme, toggleDarkScheme }) => {
 				<i
 					class='fas fa-toggle-off fa-lg'
 					onClick={toggleDarkScheme}
-					style={{ cursor: 'pointer' }}></i>
+					style={{ cursor: 'pointer', color: '#f7f7f7' }}></i>
 			) : (
 				<i
 					class='fas fa-toggle-on fa-lg'

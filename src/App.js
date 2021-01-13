@@ -119,54 +119,63 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<Container>
-				<HashRouter basename='/'>
-					<Navigation
-						darkScheme={this.state.darkScheme}
-						toggleDarkScheme={this.toggleDarkScheme}
-					/>
-					<main>
-						<Switch>
-							<Route
-								exact
-								path='/home'
-								render={() => <CarouselContainer data={data} />}
-							/>
-							<Route exact path='/about' component={About} />
-							<Route
-								exact
-								path='/gallery'
-								render={() => (
-									<Gallery
-										searchOptions={this.searchOptions}
-										images={this.state.galleryImages}
-										getGalleryImages={this.getGalleryImages}
-										getMoreGalleryImages={this.getMoreGalleryImages}
-									/>
-								)}
-							/>
-							<Route
-								path='/search'
-								render={(routerProps) => (
-									<Search
-										searchOptions={this.searchOptions}
-										handleChange={this.handleChange}
-										searchString={this.state.searchString}
-										lastSearch={this.state.lastSearch}
-										routerProps={routerProps}
-										getSearchImages={this.getSearchImages}
-										getMoreSearchImages={this.getMoreSearchImages}
-										setSearch={this.state.setSearch}
-										error={this.state.error}
-										searchImages={this.state.searchImages}
-									/>
-								)}
-							/>
-							<Redirect path='*' to='/home' />
-						</Switch>
-					</main>
-				</HashRouter>
-			</Container>
+			<div
+				style={{
+					backgroundColor: this.state.darkScheme === 'on' ? '#292b2c' : '',
+					height: '100vh',
+				}}>
+				<Container
+					style={{
+						backgroundColor: this.state.darkScheme === 'on' ? '#292b2c' : '',
+					}}>
+					<HashRouter basename='/'>
+						<Navigation
+							darkScheme={this.state.darkScheme}
+							toggleDarkScheme={this.toggleDarkScheme}
+						/>
+						<main>
+							<Switch>
+								<Route
+									exact
+									path='/home'
+									render={() => <CarouselContainer data={data} />}
+								/>
+								<Route exact path='/about' component={About} />
+								<Route
+									exact
+									path='/gallery'
+									render={() => (
+										<Gallery
+											searchOptions={this.searchOptions}
+											images={this.state.galleryImages}
+											getGalleryImages={this.getGalleryImages}
+											getMoreGalleryImages={this.getMoreGalleryImages}
+										/>
+									)}
+								/>
+								<Route
+									path='/search'
+									render={(routerProps) => (
+										<Search
+											searchOptions={this.searchOptions}
+											handleChange={this.handleChange}
+											searchString={this.state.searchString}
+											lastSearch={this.state.lastSearch}
+											routerProps={routerProps}
+											getSearchImages={this.getSearchImages}
+											getMoreSearchImages={this.getMoreSearchImages}
+											setSearch={this.state.setSearch}
+											error={this.state.error}
+											searchImages={this.state.searchImages}
+										/>
+									)}
+								/>
+								<Redirect path='*' to='/home' />
+							</Switch>
+						</main>
+					</HashRouter>
+				</Container>
+			</div>
 		);
 	}
 }
