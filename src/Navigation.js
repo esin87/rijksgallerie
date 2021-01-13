@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { LinkContainer } from 'react-router-bootstrap';
 
-const Navigation = () => {
+const Navigation = ({ darkScheme }) => {
 	return (
 		<Navbar collapseOnSelect variant='light' expand='md'>
 			<LinkContainer to='/home'>
@@ -27,6 +27,11 @@ const Navigation = () => {
 					</LinkContainer>
 				</Nav>
 			</Navbar.Collapse>
+			{darkScheme ? (
+				<i class='fas fa-toggle-off'></i>
+			) : (
+				<i class='fas fa-toggle-on'></i>
+			)}
 		</Navbar>
 	);
 };

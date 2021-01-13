@@ -24,6 +24,7 @@ class App extends React.Component {
 			lastSearch: '',
 			setSearch: false,
 			error: false,
+			darkScheme: false,
 		};
 
 		this.searchOptions = {
@@ -109,8 +110,7 @@ class App extends React.Component {
 		return (
 			<Container>
 				<HashRouter basename='/'>
-					<Navigation />
-
+					<Navigation darkScheme={this.state.darkScheme} />
 					<main>
 						<Switch>
 							<Route
