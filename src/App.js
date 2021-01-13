@@ -24,7 +24,7 @@ class App extends React.Component {
 			lastSearch: '',
 			setSearch: false,
 			error: false,
-			darkScheme: false,
+			darkScheme: localStorage.getItem('darkScheme') === 'on' ? 'on' : 'off',
 		};
 
 		this.searchOptions = {
@@ -34,6 +34,17 @@ class App extends React.Component {
 			page: 1,
 		};
 	}
+
+	toggleDarkScheme = () => {
+		localStorage.getItem('darkScheme')
+			? localStorage.setItem('darkScheme', 'off')
+			: localStorage.setItem('darkScheme', 'on');
+		if (this.state.darkScheme === 'on') {
+			this.setState({ darkScheme: 'off' });
+		} else {
+			this.setState({ darkScheme: 'on' });
+		}
+	};
 
 	getGalleryImages = () => {
 		this.searchOptions.page = 1;
@@ -110,7 +121,10 @@ class App extends React.Component {
 		return (
 			<Container>
 				<HashRouter basename='/'>
-					<Navigation darkScheme={this.state.darkScheme} />
+					<Navigation
+						darkScheme={this.state.darkScheme}
+						toggleDarkScheme={this.toggleDarkScheme}
+					/>
 					<main>
 						<Switch>
 							<Route
