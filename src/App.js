@@ -141,7 +141,11 @@ class App extends React.Component {
 									path='/home'
 									render={() => <CarouselContainer data={data} />}
 								/>
-								<Route exact path='/about' component={About} />
+								<Route
+									exact
+									path='/about'
+									render={() => <About darkScheme={this.state.darkScheme} />}
+								/>
 								<Route
 									exact
 									path='/gallery'
@@ -159,6 +163,7 @@ class App extends React.Component {
 									path='/search'
 									render={(routerProps) => (
 										<Search
+											darkScheme={this.state.darkScheme}
 											searchOptions={this.searchOptions}
 											handleChange={this.handleChange}
 											searchString={this.state.searchString}

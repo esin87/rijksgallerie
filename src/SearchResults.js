@@ -10,6 +10,7 @@ const SearchResults = ({
 	getSearchImages,
 	searchOptions,
 	getMoreSearchImages,
+	darkScheme,
 }) => {
 	if (!images) {
 		return <div>Loading...</div>;
@@ -23,6 +24,7 @@ const SearchResults = ({
 						<span style={{ fontStyle: 'italic' }}>{lastSearch}:</span>{' '}
 					</p>
 					<Gallery
+						darkScheme={darkScheme}
 						images={images}
 						getGalleryImages={getSearchImages}
 						searchOptions={searchOptions}

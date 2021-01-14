@@ -88,7 +88,7 @@ class Gallery extends React.Component {
 												style={{
 													border:
 														this.props.darkScheme === 'on'
-															? '1px solid black'
+															? '1px solid #6c757'
 															: '',
 												}}>
 												{object.webImage && (
@@ -143,7 +143,13 @@ class Gallery extends React.Component {
 				<Container
 					className='d-flex  justify-content-center align-items-center align-content-center'
 					style={{ minHeight: '90vh' }}>
-					<span style={{ paddingRight: '1em' }}>Loading results{'  '}</span>
+					<span
+						style={{
+							paddingRight: '1em',
+							color: this.props.darkScheme === 'on' ? 'white' : '',
+						}}>
+						Loading results{'  '}
+					</span>
 					<Spinner
 						animation='border'
 						variant={this.props.darkScheme === 'on' ? 'light' : 'dark'}

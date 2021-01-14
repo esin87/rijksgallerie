@@ -6,9 +6,14 @@ import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 import { CSSTransitionGroup } from 'react-transition-group';
 
-const About = () => {
+const About = ({ darkScheme }) => {
 	return (
-		<Jumbotron>
+		<Jumbotron
+			style={{
+				backgroundColor: darkScheme === 'on' ? '#292b2c' : '',
+				color: darkScheme === 'on' ? 'white' : '',
+				border: darkScheme === 'on' ? '1px solid white' : '',
+			}}>
 			<CSSTransitionGroup
 				transitionName='fade'
 				transitionAppear={true}
@@ -23,7 +28,7 @@ const About = () => {
 						alt='An excerpt from a painting called "The Nightwatch," by Rembrandt'
 						style={{ paddingBottom: '1em' }}
 					/>
-					<p>
+					<p className='text-muted'>
 						Rijksgalerij is an application for users to interact with the
 						Rijksmuseum API. The Rijksmuseum is a collection of Dutch and
 						international art and history from the Middle Ages to the present
@@ -31,7 +36,7 @@ const About = () => {
 						Rijksmuseum showcases the finest art from the Netherlands and all
 						over the world.
 					</p>
-					<p>
+					<p className='text-muted'>
 						The Rijksmuseum{' '}
 						<a
 							href='https://data.rijksmuseum.nl/'
