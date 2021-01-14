@@ -49,9 +49,18 @@ const Detail = ({ error, objectDetail, show, handleClose, darkScheme }) => {
 				size='xl'
 				show={show}
 				onHide={handleClose}
-				className='modal-container'>
-				<Modal.Header closeButton>Oops!</Modal.Header>
-				<Modal.Body>
+				className='modal-container'
+				style={{
+					border: darkScheme === 'on' ? '1px solid #6c757' : '',
+					color: darkScheme === 'on' ? 'white' : '',
+				}}>
+				<Modal.Header
+					closeButton
+					style={{ backgroundColor: darkScheme === 'on' ? '#292b2c' : '' }}>
+					Oops!
+				</Modal.Header>
+				<Modal.Body
+					style={{ backgroundColor: darkScheme === 'on' ? '#292b2c' : '' }}>
 					<p>Something went wrong. Please try another image.</p>
 				</Modal.Body>
 			</Modal>
