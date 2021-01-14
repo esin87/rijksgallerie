@@ -36,13 +36,12 @@ class App extends React.Component {
 	}
 
 	toggleDarkScheme = () => {
-		localStorage.getItem('darkScheme')
-			? localStorage.setItem('darkScheme', 'off')
-			: localStorage.setItem('darkScheme', 'on');
 		if (this.state.darkScheme === 'on') {
 			this.setState({ darkScheme: 'off' });
+			localStorage.setItem('darkScheme', 'off');
 		} else {
 			this.setState({ darkScheme: 'on' });
+			localStorage.setItem('darkScheme', 'on');
 		}
 	};
 
