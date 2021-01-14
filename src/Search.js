@@ -15,6 +15,7 @@ const Search = ({
 	searchOptions,
 	getMoreSearchImages,
 	error,
+	darkScheme,
 }) => {
 	let history = useHistory();
 
@@ -25,7 +26,7 @@ const Search = ({
 	}
 
 	return (
-		<Container>
+		<Container style={{ color: darkScheme === 'on' ? 'white' : '' }}>
 			<SearchForm
 				handleChange={handleChange}
 				handleSubmit={handleSubmit}
@@ -33,6 +34,7 @@ const Search = ({
 			/>
 			{searchImages && (
 				<SearchResults
+					darkScheme={darkScheme}
 					getSearchImages={getSearchImages}
 					getMoreSearchImages={getMoreSearchImages}
 					setSearch={setSearch}

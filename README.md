@@ -35,7 +35,8 @@ This application provides users with a portal to the Rijksmuseum [API](https://d
 
 - [x] Add infinite scroll to Gallery to load more results
 - [x] Add infinite scroll to Search results
-- [ ] Save search results after navigating away from search page
+- [x] Save search results after navigating away from search page
+- [x] Dark theme toggle
 - [ ] Testing coverage
 
 ## Installation Instructions

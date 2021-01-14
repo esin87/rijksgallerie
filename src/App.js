@@ -24,6 +24,7 @@ class App extends React.Component {
 			lastSearch: '',
 			setSearch: false,
 			error: false,
+			darkScheme: localStorage.getItem('darkScheme') === 'on' ? 'on' : 'off',
 		};
 
 		this.searchOptions = {
@@ -33,6 +34,16 @@ class App extends React.Component {
 			page: 1,
 		};
 	}
+
+	toggleDarkScheme = () => {
+		if (this.state.darkScheme === 'on') {
+			this.setState({ darkScheme: 'off' });
+			localStorage.setItem('darkScheme', 'off');
+		} else {
+			this.setState({ darkScheme: 'on' });
+			localStorage.setItem('darkScheme', 'on');
+		}
+	};
 
 	getGalleryImages = () => {
 		this.searchOptions.page = 1;
@@ -107,52 +118,70 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<Container>
-				<HashRouter basename='/'>
-					<Navigation />
-
-					<main>
-						<Switch>
-							<Route
-								exact
-								path='/home'
-								render={() => <CarouselContainer data={data} />}
-							/>
-							<Route exact path='/about' component={About} />
-							<Route
-								exact
-								path='/gallery'
-								render={() => (
-									<Gallery
-										searchOptions={this.searchOptions}
-										images={this.state.galleryImages}
-										getGalleryImages={this.getGalleryImages}
-										getMoreGalleryImages={this.getMoreGalleryImages}
-									/>
-								)}
-							/>
-							<Route
-								path='/search'
-								render={(routerProps) => (
-									<Search
-										searchOptions={this.searchOptions}
-										handleChange={this.handleChange}
-										searchString={this.state.searchString}
-										lastSearch={this.state.lastSearch}
-										routerProps={routerProps}
-										getSearchImages={this.getSearchImages}
-										getMoreSearchImages={this.getMoreSearchImages}
-										setSearch={this.state.setSearch}
-										error={this.state.error}
-										searchImages={this.state.searchImages}
-									/>
-								)}
-							/>
-							<Redirect path='*' to='/home' />
-						</Switch>
-					</main>
-				</HashRouter>
-			</Container>
+			<div
+				style={{
+					backgroundColor: this.state.darkScheme === 'on' ? '#292b2c' : '',
+					height: '100%',
+					minHeight: '100vh',
+				}}>
+				<Container
+					style={{
+						backgroundColor: this.state.darkScheme === 'on' ? '#292b2c' : '',
+					}}>
+					<HashRouter basename='/'>
+						<Navigation
+							darkScheme={this.state.darkScheme}
+							toggleDarkScheme={this.toggleDarkScheme}
+						/>
+						<main>
+							<Switch>
+								<Route
+									exact
+									path='/home'
+									render={() => <CarouselContainer data={data} />}
+								/>
+								<Route
+									exact
+									path='/about'
+									render={() => <About darkScheme={this.state.darkScheme} />}
+								/>
+								<Route
+									exact
+									path='/gallery'
+									render={() => (
+										<Gallery
+											searchOptions={this.searchOptions}
+											images={this.state.galleryImages}
+											getGalleryImages={this.getGalleryImages}
+											getMoreGalleryImages={this.getMoreGalleryImages}
+											darkScheme={this.state.darkScheme}
+										/>
+									)}
+								/>
+								<Route
+									path='/search'
+									render={(routerProps) => (
+										<Search
+											darkScheme={this.state.darkScheme}
+											searchOptions={this.searchOptions}
+											handleChange={this.handleChange}
+											searchString={this.state.searchString}
+											lastSearch={this.state.lastSearch}
+											routerProps={routerProps}
+											getSearchImages={this.getSearchImages}
+											getMoreSearchImages={this.getMoreSearchImages}
+											setSearch={this.state.setSearch}
+											error={this.state.error}
+											searchImages={this.state.searchImages}
+										/>
+									)}
+								/>
+								<Redirect path='*' to='/home' />
+							</Switch>
+						</main>
+					</HashRouter>
+				</Container>
+			</div>
 		);
 	}
 }
