@@ -3,21 +3,28 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 
-const Detail = ({ error, objectDetail, show, handleClose }) => {
+const Detail = ({ error, objectDetail, show, handleClose, darkScheme }) => {
 	if (!error) {
 		return (
 			<Modal
+				style={{
+					border: darkScheme === 'on' ? '1px solid #6c757' : '',
+					color: darkScheme === 'on' ? 'white' : '',
+				}}
 				className='modal-container'
 				show={show}
 				onHide={handleClose}
 				size='xl'>
-				<Modal.Header closeButton>
+				<Modal.Header
+					closeButton
+					style={{ backgroundColor: darkScheme === 'on' ? '#292b2c' : '' }}>
 					<Modal.Title>{objectDetail.artObject.longTitle}</Modal.Title>
 				</Modal.Header>
 				{objectDetail.artObject.webImage && (
 					<Image fluid src={objectDetail.artObject.webImage.url} />
 				)}
-				<Modal.Body>
+				<Modal.Body
+					style={{ backgroundColor: darkScheme === 'on' ? '#292b2c' : '' }}>
 					<p>{objectDetail.artObject.label.makerLine}</p>
 					<p>
 						Description:{' '}
@@ -28,7 +35,8 @@ const Detail = ({ error, objectDetail, show, handleClose }) => {
 						)}
 					</p>
 				</Modal.Body>
-				<Modal.Footer>
+				<Modal.Footer
+					style={{ backgroundColor: darkScheme === 'on' ? '#292b2c' : '' }}>
 					<Button variant='secondary' onClick={handleClose}>
 						Close
 					</Button>

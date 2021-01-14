@@ -131,6 +131,7 @@ class Gallery extends React.Component {
 										show={this.state.show}
 										handleClose={this.handleClose}
 										error={this.state.error}
+										darkScheme={this.props.darkScheme}
 									/>
 								)}
 							</Row>
