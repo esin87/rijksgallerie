@@ -37,11 +37,15 @@ This application provides users with a portal to the Rijksmuseum [API](https://d
 - [x] Add infinite scroll to Search results
 - [x] Save search results after navigating away from search page
 - [x] Dark theme toggle
+- [ ] Refactor components using React Hooks
+- [ ] Utilize React Context to avoid prop drilling
+- [ ] Implement light/dark theme toggle in more programmatic way
 - [ ] Testing coverage
 
 ## Installation Instructions
 
 - Clone the repository locally.
+- If you do not have NodeJS/npm installed on your machine, follow the directions [here](https://nodejs.org/en/download/) to install.
 - Using your CLI/Terminal, navigate into the cloned folder and run `npm install` to download required dependencies.
 - Run `npm start` to launch the React development server.
 
