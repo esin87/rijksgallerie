@@ -19,7 +19,7 @@ const CarouselContainer = ({ data }) => {
 							style={{
 								minHeight: '90vh',
 							}}
-							interval={2000}>
+							>
 							{data.map((item) => {
 								return (
 									<Carousel.Item
