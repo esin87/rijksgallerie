@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
-import Gallery from './Gallery';
+import Gallery from '../Gallery/Gallery';
 
 const SearchResults = ({
 	images,

@@ -1,18 +1,18 @@
 //////App.js
 import React from 'react';
 import './App.css';
-import data from './data.json';
+import data from './data/data.json';
 import { Switch, Route, Redirect, HashRouter } from 'react-router-dom';
 
 //BOOTSTRAP COMPONENTS
 import Container from 'react-bootstrap/Container';
 
 //REACT APP COMPONENTS
-import CarouselContainer from './CarouselContainer';
-import Navigation from './Navigation';
-import About from './About';
-import Gallery from './Gallery';
-import Search from './Search';
+import CarouselContainer from './components/CarouselContainer/CarouselContainer';
+import Navigation from './components/Navigation/Navigation';
+import About from './components/About/About';
+import Gallery from './components/Gallery/Gallery';
+import Search from './components/Search/Search';
 
 class App extends React.Component {
 	constructor(props) {
