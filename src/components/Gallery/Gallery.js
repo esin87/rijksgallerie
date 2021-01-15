@@ -9,7 +9,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import Container from 'react-bootstrap/Container';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import Detail from './Detail.js';
+import Detail from '../Detail/Detail.js';
 class Gallery extends React.Component {
 	constructor(props) {
 		super(props);
