@@ -1,5 +1,5 @@
 //////App.js
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import data from './data/data.json';
 import { Switch, Route, Redirect, HashRouter } from 'react-router-dom';
@@ -14,176 +14,159 @@ import About from './components/About/About';
 import Gallery from './components/Gallery/Gallery';
 import Search from './components/Search/Search';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			galleryImages: '',
-			searchImages: '',
-			searchString: '',
-			lastSearch: '',
-			setSearch: false,
-			error: false,
-			darkScheme: localStorage.getItem('darkScheme') === 'on' ? 'on' : 'off',
-		};
+const App = () => {
+	const [galleryImages, setGalleryImages] = useState('');
+	const [searchImages, setSearchImages] = useState('');
+	const [searchString, setSearchString] = useState('');
+	const [lastSearch, setLastSearch] = useState('');
+	const [setSearch, setSetSearch] = useState(false);
+	const [error, setError] = useState(false);
+	const [darkScheme, setDarkScheme] = useState(
+		localStorage.getItem('darkScheme') === 'on' ? 'on' : 'off'
+	);
+	const searchOptions = {
+		key: process.env.REACT_APP_RIJKS_KEY,
+		url: 'https://www.rijksmuseum.nl/api/en',
+		numberOfResults: 14,
+		page: 1,
+	};
 
-		this.searchOptions = {
-			key: process.env.REACT_APP_RIJKS_KEY,
-			url: 'https://www.rijksmuseum.nl/api/en',
-			numberOfResults: 14,
-			page: 1,
-		};
-	}
-
-	toggleDarkScheme = () => {
-		if (this.state.darkScheme === 'on') {
-			this.setState({ darkScheme: 'off' });
+	const toggleDarkScheme = () => {
+		if (darkScheme === 'on') {
+			setDarkScheme('off');
 			localStorage.setItem('darkScheme', 'off');
 		} else {
-			this.setState({ darkScheme: 'on' });
+			setDarkScheme('on');
 			localStorage.setItem('darkScheme', 'on');
 		}
 	};
 
-	getGalleryImages = () => {
-		this.searchOptions.page = 1;
-		const url = `${this.searchOptions.url}/collection?key=${this.searchOptions.key}&ps=${this.searchOptions.numberOfResults}&p=${this.searchOptions.page}`;
+	const getGalleryImages = () => {
+		searchOptions.page = 1;
+		const url = `${searchOptions.url}/collection?key=${searchOptions.key}&ps=${searchOptions.numberOfResults}&p=${searchOptions.page}`;
 		fetch(url)
 			.then((res) => res.json())
-			.then((res) =>
-				this.setState({
-					galleryImages: res.artObjects,
-				})
-			)
+			.then((res) => setGalleryImages(res.artObjects))
 			.catch((err) => console.error(err));
 	};
 
-	getMoreGalleryImages = () => {
-		this.searchOptions.page++;
-		const url = `${this.searchOptions.url}/collection?key=${this.searchOptions.key}&ps=${this.searchOptions.numberOfResults}&p=${this.searchOptions.page}`;
+	const getMoreGalleryImages = () => {
+		searchOptions.page++;
+		const url = `${searchOptions.url}/collection?key=${searchOptions.key}&ps=${searchOptions.numberOfResults}&p=${searchOptions.page}`;
 		fetch(url)
 			.then((res) => res.json())
 			.then((res) => {
-				this.setState((prevState) => ({
-					galleryImages: [...prevState.galleryImages, ...res.artObjects],
-				}));
+				setGalleryImages([...galleryImages, ...res.artObjects]);
 			})
 			.catch((err) => console.error(err));
 	};
 
-	getSearchImages = (searchString) => {
-		this.page = 1;
+	const getSearchImages = (searchString) => {
+		searchOptions.page = 1;
 		if (searchString) {
-			const url = `${this.searchOptions.url}/collection?key=${this.searchOptions.key}&q=${this.state.searchString}&ps=14&p=${this.page}`;
+			const url = `${searchOptions.url}/collection?key=${searchOptions.key}&q=${searchString}&ps=14&p=${searchOptions.page}`;
 
 			fetch(url)
 				.then((res) => res.json())
 				.then((res) => {
-					this.setState({
-						error: false,
-						searchImages: res.artObjects,
-						setSearch: true,
-						searchString: '',
-						lastSearch: this.state.searchString,
-					});
+					setError(false);
+					setSearchImages(res.artObjects);
+					setSetSearch(true);
+					setSearchString('');
+					setLastSearch(searchString);
 				})
 				.then((res) => {
-					if (!this.state.searchImages.length) {
-						this.setState({ error: true });
+					if (!searchImages.length) {
+						setError(true);
 					}
 				})
 				.catch((err) => {
-					console.error(err);
-					this.setState({ error: true });
+					setError(true);
 				});
 		}
 	};
 
-	getMoreSearchImages = () => {
-		this.page++;
-		const url = `${this.searchOptions.url}/collection?key=${this.searchOptions.key}&q=${this.state.lastSearch}&ps=14&p=${this.page}`;
+	const getMoreSearchImages = () => {
+		searchOptions.page++;
+		const url = `${searchOptions.url}/collection?key=${searchOptions.key}&q=${lastSearch}&ps=14&p=${searchOptions.page}`;
 		fetch(url)
 			.then((res) => res.json())
 			.then((res) => {
-				this.setState((prevState) => ({
-					searchImages: [...prevState.searchImages, ...res.artObjects],
-				}));
+				setSearchImages([...searchImages, ...res.artObjects]);
 			})
 			.catch(console.error);
 	};
 
-	handleChange = (event) => {
-		this.setState({ searchString: event.target.value });
+	const handleChange = (event) => {
+		setSearchString(event.target.value);
 	};
 
-	render() {
-		return (
-			<div
+	return (
+		<div
+			style={{
+				backgroundColor: darkScheme === 'on' ? '#292b2c' : '',
+				height: '100%',
+				minHeight: '100vh',
+			}}>
+			<Container
 				style={{
-					backgroundColor: this.state.darkScheme === 'on' ? '#292b2c' : '',
-					height: '100%',
-					minHeight: '100vh',
+					backgroundColor: darkScheme === 'on' ? '#292b2c' : '',
 				}}>
-				<Container
-					style={{
-						backgroundColor: this.state.darkScheme === 'on' ? '#292b2c' : '',
-					}}>
-					<HashRouter basename='/'>
-						<Navigation
-							darkScheme={this.state.darkScheme}
-							toggleDarkScheme={this.toggleDarkScheme}
-						/>
-						<main>
-							<Switch>
-								<Route
-									exact
-									path='/home'
-									render={() => <CarouselContainer data={data} />}
-								/>
-								<Route
-									exact
-									path='/about'
-									render={() => <About darkScheme={this.state.darkScheme} />}
-								/>
-								<Route
-									exact
-									path='/gallery'
-									render={() => (
-										<Gallery
-											searchOptions={this.searchOptions}
-											images={this.state.galleryImages}
-											getGalleryImages={this.getGalleryImages}
-											getMoreGalleryImages={this.getMoreGalleryImages}
-											darkScheme={this.state.darkScheme}
-										/>
-									)}
-								/>
-								<Route
-									path='/search'
-									render={(routerProps) => (
-										<Search
-											darkScheme={this.state.darkScheme}
-											searchOptions={this.searchOptions}
-											handleChange={this.handleChange}
-											searchString={this.state.searchString}
-											lastSearch={this.state.lastSearch}
-											routerProps={routerProps}
-											getSearchImages={this.getSearchImages}
-											getMoreSearchImages={this.getMoreSearchImages}
-											setSearch={this.state.setSearch}
-											error={this.state.error}
-											searchImages={this.state.searchImages}
-										/>
-									)}
-								/>
-								<Redirect path='*' to='/home' />
-							</Switch>
-						</main>
-					</HashRouter>
-				</Container>
-			</div>
-		);
-	}
-}
+				<HashRouter basename='/'>
+					<Navigation
+						darkScheme={darkScheme}
+						toggleDarkScheme={toggleDarkScheme}
+					/>
+					<main>
+						<Switch>
+							<Route
+								exact
+								path='/home'
+								render={() => <CarouselContainer data={data} />}
+							/>
+							<Route
+								exact
+								path='/about'
+								render={() => <About darkScheme={darkScheme} />}
+							/>
+							<Route
+								exact
+								path='/gallery'
+								render={() => (
+									<Gallery
+										searchOptions={searchOptions}
+										images={galleryImages}
+										getGalleryImages={getGalleryImages}
+										getMoreGalleryImages={getMoreGalleryImages}
+										darkScheme={darkScheme}
+									/>
+								)}
+							/>
+							<Route
+								path='/search'
+								render={(routerProps) => (
+									<Search
+										darkScheme={darkScheme}
+										searchOptions={searchOptions}
+										handleChange={handleChange}
+										searchString={searchString}
+										lastSearch={lastSearch}
+										routerProps={routerProps}
+										getSearchImages={getSearchImages}
+										getMoreSearchImages={getMoreSearchImages}
+										setSearch={setSearch}
+										error={error}
+										searchImages={searchImages}
+									/>
+								)}
+							/>
+							<Redirect path='*' to='/home' />
+						</Switch>
+					</main>
+				</HashRouter>
+			</Container>
+		</div>
+	);
+};
 
 export default App;
