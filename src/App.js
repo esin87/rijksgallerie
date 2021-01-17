@@ -84,9 +84,10 @@ const App = () => {
 					setSetSearch(true);
 					setSearchString('');
 					setLastSearch(searchString);
+					return res;
 				})
 				.then((res) => {
-					if (!searchImages.length) {
+					if (!res.artObjects.length) {
 						setError(true);
 					}
 				})
