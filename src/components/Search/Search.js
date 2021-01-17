@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import SearchForm from './SearchForm';
 import SearchResults from './SearchResults';
+import { DarkThemeContext } from '../../darktheme-context.js';
 
 const Search = ({
 	handleChange,
@@ -24,28 +25,34 @@ const Search = ({
 		history.push(`/search/${searchString}`);
 		getSearchImages(searchString);
 	}
-
 	return (
-		<Container style={{ color: darkTheme === 'on' ? 'white' : '' }}>
-			<SearchForm
-				handleChange={handleChange}
-				handleSubmit={handleSubmit}
-				searchString={searchString}
-			/>
-			{searchImages && (
-				<SearchResults
-					darkTheme={darkTheme}
-					getSearchImages={getSearchImages}
-					getMoreSearchImages={getMoreSearchImages}
-					setSearch={setSearch}
-					error={error}
-					routerProps={routerProps}
-					images={searchImages}
-					searchOptions={searchOptions}
-					lastSearch={lastSearch}
-				/>
-			)}
-		</Container>
+		<DarkThemeContext.Consumer>
+			{({ darkThemeStyles }) => {
+				return (
+					<Container
+						style={{ color: darkTheme === 'on' ? darkThemeStyles.color : '' }}>
+						<SearchForm
+							handleChange={handleChange}
+							handleSubmit={handleSubmit}
+							searchString={searchString}
+						/>
+						{searchImages && (
+							<SearchResults
+								darkTheme={darkTheme}
+								getSearchImages={getSearchImages}
+								getMoreSearchImages={getMoreSearchImages}
+								setSearch={setSearch}
+								error={error}
+								routerProps={routerProps}
+								images={searchImages}
+								searchOptions={searchOptions}
+								lastSearch={lastSearch}
+							/>
+						)}
+					</Container>
+				);
+			}}
+		</DarkThemeContext.Consumer>
 	);
 };
 
