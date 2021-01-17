@@ -16,7 +16,7 @@ const Gallery = ({
 	getGalleryImages,
 	searchOptions,
 	getMoreGalleryImages,
-	darkScheme,
+	darkTheme,
 }) => {
 	const [show, setShow] = useState(false);
 	const [activeItem, setActiveItem] = useState('');
@@ -67,7 +67,7 @@ const Gallery = ({
 						<span
 							style={{
 								paddingRight: '1em',
-								color: darkScheme === 'on' ? 'white' : '',
+								color: darkTheme === 'on' ? 'white' : '',
 							}}>
 							Loading more results ...
 						</span>
@@ -88,7 +88,7 @@ const Gallery = ({
 										style={{ marginTop: '1em' }}>
 										<Card
 											style={{
-												border: darkScheme === 'on' ? '1px solid #6c757' : '',
+												border: darkTheme === 'on' ? '1px solid #6c757' : '',
 											}}>
 											{object.webImage && (
 												<Card.Img
@@ -99,7 +99,7 @@ const Gallery = ({
 											)}
 											<Card.Body
 												style={{
-													backgroundColor: darkScheme === 'on' ? '#292b2c' : '',
+													backgroundColor: darkTheme === 'on' ? '#292b2c' : '',
 												}}>
 												{object.webImage ? (
 													''
@@ -112,7 +112,7 @@ const Gallery = ({
 												<Button
 													onClick={() => getDetail(object.objectNumber)}
 													variant={
-														darkScheme === 'on' ? 'dark' : 'outline-dark'
+														darkTheme === 'on' ? 'dark' : 'outline-dark'
 													}>
 													Details
 												</Button>
@@ -127,7 +127,7 @@ const Gallery = ({
 									show={show}
 									handleClose={handleClose}
 									error={error}
-									darkScheme={darkScheme}
+									darkTheme={darkTheme}
 								/>
 							)}
 						</Row>
@@ -143,13 +143,13 @@ const Gallery = ({
 				<span
 					style={{
 						paddingRight: '1em',
-						color: darkScheme === 'on' ? 'white' : '',
+						color: darkTheme === 'on' ? 'white' : '',
 					}}>
 					Loading results{'  '}
 				</span>
 				<Spinner
 					animation='border'
-					variant={darkScheme === 'on' ? 'light' : 'dark'}
+					variant={darkTheme === 'on' ? 'light' : 'dark'}
 					size='sm'
 				/>
 			</Container>

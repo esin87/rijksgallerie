@@ -14,6 +14,16 @@ import About from './components/About/About';
 import Gallery from './components/Gallery/Gallery';
 import Search from './components/Search/Search';
 
+//CONTEXT
+import { DarkThemeContext } from './darktheme-context';
+
+const darkThemeStyles = {
+	backgroundColor: '#292b2c',
+	color: 'white',
+	whiteBorder: '1px solid white',
+	grayBorder: '1px solid #6c757',
+};
+
 const App = () => {
 	const [galleryImages, setGalleryImages] = useState('');
 	const [searchImages, setSearchImages] = useState('');
@@ -21,8 +31,8 @@ const App = () => {
 	const [lastSearch, setLastSearch] = useState('');
 	const [setSearch, setSetSearch] = useState(false);
 	const [error, setError] = useState(false);
-	const [darkScheme, setDarkScheme] = useState(
-		localStorage.getItem('darkScheme') === 'on' ? 'on' : 'off'
+	const [darkTheme, setDarkTheme] = useState(
+		localStorage.getItem('darkTheme') === 'on' ? 'on' : 'off'
 	);
 	const searchOptions = {
 		key: process.env.REACT_APP_RIJKS_KEY,
@@ -31,13 +41,13 @@ const App = () => {
 		page: 1,
 	};
 
-	const toggleDarkScheme = () => {
-		if (darkScheme === 'on') {
-			setDarkScheme('off');
-			localStorage.setItem('darkScheme', 'off');
+	const toggleDarkTheme = () => {
+		if (darkTheme === 'on') {
+			setDarkTheme('off');
+			localStorage.setItem('darkTheme', 'off');
 		} else {
-			setDarkScheme('on');
-			localStorage.setItem('darkScheme', 'on');
+			setDarkTheme('on');
+			localStorage.setItem('darkTheme', 'on');
 		}
 	};
 
@@ -74,9 +84,10 @@ const App = () => {
 					setSetSearch(true);
 					setSearchString('');
 					setLastSearch(searchString);
+					return res;
 				})
 				.then((res) => {
-					if (!searchImages.length) {
+					if (!res.artObjects.length) {
 						setError(true);
 					}
 				})
@@ -102,70 +113,74 @@ const App = () => {
 	};
 
 	return (
-		<div
-			style={{
-				backgroundColor: darkScheme === 'on' ? '#292b2c' : '',
-				height: '100%',
-				minHeight: '100vh',
-			}}>
-			<Container
+		<DarkThemeContext.Provider value={{ darkThemeStyles }}>
+			<div
 				style={{
-					backgroundColor: darkScheme === 'on' ? '#292b2c' : '',
+					backgroundColor:
+						darkTheme === 'on' ? darkThemeStyles.backgroundColor : '',
+					height: '100%',
+					minHeight: '100vh',
 				}}>
-				<HashRouter basename='/'>
-					<Navigation
-						darkScheme={darkScheme}
-						toggleDarkScheme={toggleDarkScheme}
-					/>
-					<main>
-						<Switch>
-							<Route
-								exact
-								path='/home'
-								render={() => <CarouselContainer data={data} />}
-							/>
-							<Route
-								exact
-								path='/about'
-								render={() => <About darkScheme={darkScheme} />}
-							/>
-							<Route
-								exact
-								path='/gallery'
-								render={() => (
-									<Gallery
-										searchOptions={searchOptions}
-										images={galleryImages}
-										getGalleryImages={getGalleryImages}
-										getMoreGalleryImages={getMoreGalleryImages}
-										darkScheme={darkScheme}
-									/>
-								)}
-							/>
-							<Route
-								path='/search'
-								render={(routerProps) => (
-									<Search
-										darkScheme={darkScheme}
-										searchOptions={searchOptions}
-										handleChange={handleChange}
-										searchString={searchString}
-										lastSearch={lastSearch}
-										routerProps={routerProps}
-										getSearchImages={getSearchImages}
-										getMoreSearchImages={getMoreSearchImages}
-										setSearch={setSearch}
-										error={error}
-										searchImages={searchImages}
-									/>
-								)}
-							/>
-							<Redirect path='*' to='/home' />
-						</Switch>
-					</main>
-				</HashRouter>
-			</Container>
-		</div>
+				<Container
+					style={{
+						backgroundColor:
+							darkTheme === 'on' ? darkThemeStyles.backgroundColor : '',
+					}}>
+					<HashRouter basename='/'>
+						<Navigation
+							darkTheme={darkTheme}
+							toggleDarkTheme={toggleDarkTheme}
+						/>
+						<main>
+							<Switch>
+								<Route
+									exact
+									path='/home'
+									render={() => <CarouselContainer data={data} />}
+								/>
+								<Route
+									exact
+									path='/about'
+									render={() => <About darkTheme={darkTheme} />}
+								/>
+								<Route
+									exact
+									path='/gallery'
+									render={() => (
+										<Gallery
+											searchOptions={searchOptions}
+											images={galleryImages}
+											getGalleryImages={getGalleryImages}
+											getMoreGalleryImages={getMoreGalleryImages}
+											darkTheme={darkTheme}
+										/>
+									)}
+								/>
+								<Route
+									path='/search'
+									render={(routerProps) => (
+										<Search
+											darkTheme={darkTheme}
+											searchOptions={searchOptions}
+											handleChange={handleChange}
+											searchString={searchString}
+											lastSearch={lastSearch}
+											routerProps={routerProps}
+											getSearchImages={getSearchImages}
+											getMoreSearchImages={getMoreSearchImages}
+											setSearch={setSearch}
+											error={error}
+											searchImages={searchImages}
+										/>
+									)}
+								/>
+								<Redirect path='*' to='/home' />
+							</Switch>
+						</main>
+					</HashRouter>
+				</Container>
+			</div>
+		</DarkThemeContext.Provider>
 	);
 };
 
