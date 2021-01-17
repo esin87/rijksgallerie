@@ -6,13 +6,13 @@ import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 import { CSSTransitionGroup } from 'react-transition-group';
 
-const About = ({ darkScheme }) => {
+const About = ({ darkTheme }) => {
 	return (
 		<Jumbotron
 			style={{
-				backgroundColor: darkScheme === 'on' ? '#292b2c' : '',
-				color: darkScheme === 'on' ? 'white' : '',
-				border: darkScheme === 'on' ? '1px solid white' : '',
+				backgroundColor: darkTheme === 'on' ? '#292b2c' : '',
+				color: darkTheme === 'on' ? 'white' : '',
+				border: darkTheme === 'on' ? '1px solid white' : '',
 			}}>
 			<CSSTransitionGroup
 				transitionName='fade'

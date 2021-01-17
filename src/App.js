@@ -21,8 +21,8 @@ const App = () => {
 	const [lastSearch, setLastSearch] = useState('');
 	const [setSearch, setSetSearch] = useState(false);
 	const [error, setError] = useState(false);
-	const [darkScheme, setDarkScheme] = useState(
-		localStorage.getItem('darkScheme') === 'on' ? 'on' : 'off'
+	const [darkTheme, setdarkTheme] = useState(
+		localStorage.getItem('darkTheme') === 'on' ? 'on' : 'off'
 	);
 	const searchOptions = {
 		key: process.env.REACT_APP_RIJKS_KEY,
@@ -31,13 +31,13 @@ const App = () => {
 		page: 1,
 	};
 
-	const toggleDarkScheme = () => {
-		if (darkScheme === 'on') {
-			setDarkScheme('off');
-			localStorage.setItem('darkScheme', 'off');
+	const toggledarkTheme = () => {
+		if (darkTheme === 'on') {
+			setdarkTheme('off');
+			localStorage.setItem('darkTheme', 'off');
 		} else {
-			setDarkScheme('on');
-			localStorage.setItem('darkScheme', 'on');
+			setdarkTheme('on');
+			localStorage.setItem('darkTheme', 'on');
 		}
 	};
 
@@ -104,19 +104,16 @@ const App = () => {
 	return (
 		<div
 			style={{
-				backgroundColor: darkScheme === 'on' ? '#292b2c' : '',
+				backgroundColor: darkTheme === 'on' ? '#292b2c' : '',
 				height: '100%',
 				minHeight: '100vh',
 			}}>
 			<Container
 				style={{
-					backgroundColor: darkScheme === 'on' ? '#292b2c' : '',
+					backgroundColor: darkTheme === 'on' ? '#292b2c' : '',
 				}}>
 				<HashRouter basename='/'>
-					<Navigation
-						darkScheme={darkScheme}
-						toggleDarkScheme={toggleDarkScheme}
-					/>
+					<Navigation darkTheme={darkTheme} toggledarkTheme={toggledarkTheme} />
 					<main>
 						<Switch>
 							<Route
@@ -127,7 +124,7 @@ const App = () => {
 							<Route
 								exact
 								path='/about'
-								render={() => <About darkScheme={darkScheme} />}
+								render={() => <About darkTheme={darkTheme} />}
 							/>
 							<Route
 								exact
@@ -138,7 +135,7 @@ const App = () => {
 										images={galleryImages}
 										getGalleryImages={getGalleryImages}
 										getMoreGalleryImages={getMoreGalleryImages}
-										darkScheme={darkScheme}
+										darkTheme={darkTheme}
 									/>
 								)}
 							/>
@@ -146,7 +143,7 @@ const App = () => {
 								path='/search'
 								render={(routerProps) => (
 									<Search
-										darkScheme={darkScheme}
+										darkTheme={darkTheme}
 										searchOptions={searchOptions}
 										handleChange={handleChange}
 										searchString={searchString}
