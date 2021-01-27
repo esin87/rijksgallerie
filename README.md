@@ -25,20 +25,20 @@ This application provides users with a portal to the Rijksmuseum [API](https://d
 
 ## Feature Plan
 
-### MVP/Current Features
+### MVP Features
 
 - Home page with hard-coded Rembrandt carousel element
 - Gallery page that allows users to interact with random assortment of 20 art objects from API call to Rijksmuseum API
 - Search Rijksmuseum collection by any query parameter
 
-### Future Features
+### Stretch Features
 
 - [x] Add infinite scroll to Gallery to load more results
 - [x] Add infinite scroll to Search results
 - [x] Save search results after navigating away from search page
 - [x] Dark theme toggle
-- [ ] Refactor components using React Hooks
-- [ ] Utilize React Context to avoid prop drilling
+- [x] Refactor components using React Hooks
+- [x] Utilize React Context to avoid prop drilling
 - [ ] Implement light/dark theme toggle in more programmatic way
 - [ ] Testing coverage
 
