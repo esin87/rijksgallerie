@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 import Container from 'react-bootstrap/Container';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { CSSTransitionGroup } from 'react-transition-group';
 
 import Detail from '../Detail/Detail.js';
 
@@ -73,66 +74,74 @@ const Gallery = ({
 						</span>
 					</Container>
 				}>
-				<Container>
-					<CardGroup>
-						<Row>
-							{images.map((object) => {
-								return (
-									<Col
-										key={object.id}
-										xs={12}
-										s={12}
-										md={6}
-										lg={4}
-										xl={3}
-										style={{ marginTop: '1em' }}>
-										<Card
-											style={{
-												border: darkTheme === 'on' ? '1px solid #6c757' : '',
-											}}>
-											{object.webImage && (
-												<Card.Img
-													variant='top'
-													src={object.webImage ? object.webImage.url : ''}
-													alt={object.title}
-												/>
-											)}
-											<Card.Body
+				<CSSTransitionGroup
+					transitionName='fade'
+					transitionAppear={true}
+					transitionAppearTimeout={500}
+					transitionEnter={false}
+					transitionLeave={false}>
+					<Container>
+						<CardGroup>
+							<Row>
+								{images.map((object) => {
+									return (
+										<Col
+											key={object.id}
+											xs={12}
+											s={12}
+											md={6}
+											lg={4}
+											xl={3}
+											style={{ marginTop: '1em' }}>
+											<Card
 												style={{
-													backgroundColor: darkTheme === 'on' ? '#292b2c' : '',
+													border: darkTheme === 'on' ? '1px solid #6c757' : '',
 												}}>
-												{object.webImage ? (
-													''
-												) : (
-													<Card.Title>No Image Available</Card.Title>
+												{object.webImage && (
+													<Card.Img
+														variant='top'
+														src={object.webImage ? object.webImage.url : ''}
+														alt={object.title}
+													/>
 												)}
-												<Card.Text className='text-muted'>
-													{object.longTitle}
-												</Card.Text>
-												<Button
-													onClick={() => getDetail(object.objectNumber)}
-													variant={
-														darkTheme === 'on' ? 'dark' : 'outline-dark'
-													}>
-													Details
-												</Button>
-											</Card.Body>
-										</Card>
-									</Col>
-								);
-							})}
-							{(activeItem || error) && (
-								<Detail
-									objectDetail={activeItem}
-									show={show}
-									handleClose={handleClose}
-									error={error}
-									darkTheme={darkTheme}
-								/>
-							)}
-						</Row>
-					</CardGroup>
-				</Container>
+												<Card.Body
+													style={{
+														backgroundColor:
+															darkTheme === 'on' ? '#292b2c' : '',
+													}}>
+													{object.webImage ? (
+														''
+													) : (
+														<Card.Title>No Image Available</Card.Title>
+													)}
+													<Card.Text className='text-muted'>
+														{object.longTitle}
+													</Card.Text>
+													<Button
+														onClick={() => getDetail(object.objectNumber)}
+														variant={
+															darkTheme === 'on' ? 'dark' : 'outline-dark'
+														}>
+														Details
+													</Button>
+												</Card.Body>
+											</Card>
+										</Col>
+									);
+								})}
+								{(activeItem || error) && (
+									<Detail
+										objectDetail={activeItem}
+										show={show}
+										handleClose={handleClose}
+										error={error}
+										darkTheme={darkTheme}
+									/>
+								)}
+							</Row>
+						</CardGroup>
+					</Container>
+				</CSSTransitionGroup>
 			</InfiniteScroll>
 		);
 	} else {
