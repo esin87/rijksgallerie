@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import SearchForm from './SearchForm';
 import SearchResults from './SearchResults';
 import { DarkThemeContext } from '../../darktheme-context.js';
+import { CSSTransitionGroup } from 'react-transition-group';
 
 const Search = ({
 	handleChange,
@@ -29,27 +30,36 @@ const Search = ({
 		<DarkThemeContext.Consumer>
 			{({ darkThemeStyles }) => {
 				return (
-					<Container
-						style={{ color: darkTheme === 'on' ? darkThemeStyles.color : '' }}>
-						<SearchForm
-							handleChange={handleChange}
-							handleSubmit={handleSubmit}
-							searchString={searchString}
-						/>
-						{searchImages && (
-							<SearchResults
-								darkTheme={darkTheme}
-								getSearchImages={getSearchImages}
-								getMoreSearchImages={getMoreSearchImages}
-								setSearch={setSearch}
-								error={error}
-								routerProps={routerProps}
-								images={searchImages}
-								searchOptions={searchOptions}
-								lastSearch={lastSearch}
+					<CSSTransitionGroup
+						transitionName='fade'
+						transitionAppear={true}
+						transitionAppearTimeout={500}
+						transitionEnter={false}
+						transitionLeave={false}>
+						<Container
+							style={{
+								color: darkTheme === 'on' ? darkThemeStyles.color : '',
+							}}>
+							<SearchForm
+								handleChange={handleChange}
+								handleSubmit={handleSubmit}
+								searchString={searchString}
 							/>
-						)}
-					</Container>
+							{searchImages && (
+								<SearchResults
+									darkTheme={darkTheme}
+									getSearchImages={getSearchImages}
+									getMoreSearchImages={getMoreSearchImages}
+									setSearch={setSearch}
+									error={error}
+									routerProps={routerProps}
+									images={searchImages}
+									searchOptions={searchOptions}
+									lastSearch={lastSearch}
+								/>
+							)}
+						</Container>
+					</CSSTransitionGroup>
 				);
 			}}
 		</DarkThemeContext.Consumer>
