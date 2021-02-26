@@ -95,7 +95,7 @@ const Gallery = ({
 											style={{ marginTop: '1em' }}>
 											<Card
 												style={{
-													border: darkTheme === 'on' ? '1px solid #6c757' : '',
+													border: darkTheme === 'on' && '1px solid #6c757',
 												}}>
 												{object.webImage && (
 													<Card.Img
@@ -106,8 +106,7 @@ const Gallery = ({
 												)}
 												<Card.Body
 													style={{
-														backgroundColor:
-															darkTheme === 'on' ? '#292b2c' : '',
+														backgroundColor: darkTheme === 'on' && '#292b2c',
 													}}>
 													{object.webImage ? (
 														''
@@ -152,7 +151,7 @@ const Gallery = ({
 				<span
 					style={{
 						paddingRight: '1em',
-						color: darkTheme === 'on' ? 'white' : '',
+						color: darkTheme === 'on' && 'white',
 					}}>
 					Loading results{'  '}
 				</span>
