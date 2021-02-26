@@ -117,14 +117,14 @@ const App = () => {
 			<div
 				style={{
 					backgroundColor:
-						darkTheme === 'on' ? darkThemeStyles.backgroundColor : '',
+						darkTheme === 'on' && darkThemeStyles.backgroundColor,
 					height: '100%',
 					minHeight: '100vh',
 				}}>
 				<Container
 					style={{
 						backgroundColor:
-							darkTheme === 'on' ? darkThemeStyles.backgroundColor : '',
+							darkTheme === 'on' && darkThemeStyles.backgroundColor,
 					}}>
 					<HashRouter basename='/'>
 						<Navigation

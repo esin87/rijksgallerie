@@ -11,10 +11,12 @@ const Detail = ({ error, objectDetail, show, handleClose, darkTheme }) => {
 				if (!error) {
 					return (
 						<Modal
-							style={{
-								border: darkTheme === 'on' ? darkThemeStyles.grayBorder : '',
-								color: darkTheme === 'on' ? darkThemeStyles.color : '',
-							}}
+							style={
+								darkTheme === 'on' && {
+									border: darkThemeStyles.grayBorder,
+									color: darkThemeStyles.color,
+								}
+							}
 							className='modal-container'
 							show={show}
 							onHide={handleClose}
@@ -23,7 +25,7 @@ const Detail = ({ error, objectDetail, show, handleClose, darkTheme }) => {
 								closeButton
 								style={{
 									backgroundColor:
-										darkTheme === 'on' ? darkThemeStyles.backgroundColor : '',
+										darkTheme === 'on' && darkThemeStyles.backgroundColor,
 								}}>
 								<Modal.Title>{objectDetail.artObject.longTitle}</Modal.Title>
 							</Modal.Header>
@@ -33,14 +35,12 @@ const Detail = ({ error, objectDetail, show, handleClose, darkTheme }) => {
 							<Modal.Body
 								style={{
 									backgroundColor:
-										darkTheme === 'on' ? darkThemeStyles.backgroundColor : '',
+										darkTheme === 'on' && darkThemeStyles.backgroundColor,
 								}}>
 								<p>{objectDetail.artObject.label.makerLine}</p>
 								<p>
 									Description:{' '}
-									{objectDetail.artObjectPage.plaqueDescription ? (
-										objectDetail.artObjectPage.plaqueDescription
-									) : (
+									{objectDetail.artObjectPage.plaqueDescription || (
 										<span style={{ fontStyle: 'italic' }}>Not available</span>
 									)}
 								</p>
@@ -48,7 +48,7 @@ const Detail = ({ error, objectDetail, show, handleClose, darkTheme }) => {
 							<Modal.Footer
 								style={{
 									backgroundColor:
-										darkTheme === 'on' ? darkThemeStyles.backgroundColor : '',
+										darkTheme === 'on' && darkThemeStyles.backgroundColor,
 								}}>
 								<Button variant='secondary' onClick={handleClose}>
 									Close
@@ -63,22 +63,24 @@ const Detail = ({ error, objectDetail, show, handleClose, darkTheme }) => {
 							show={show}
 							onHide={handleClose}
 							className='modal-container'
-							style={{
-								border: darkTheme === 'on' ? darkThemeStyles.grayBorder : '',
-								color: darkTheme === 'on' ? darkThemeStyles.color : '',
-							}}>
+							style={
+								darkTheme === 'on' && {
+									border: darkThemeStyles.grayBorder,
+									color: darkThemeStyles.color,
+								}
+							}>
 							<Modal.Header
 								closeButton
 								style={{
 									backgroundColor:
-										darkTheme === 'on' ? darkThemeStyles.backgroundColor : '',
+										darkTheme === 'on' && darkThemeStyles.backgroundColor,
 								}}>
 								Oops!
 							</Modal.Header>
 							<Modal.Body
 								style={{
 									backgroundColor:
-										darkTheme === 'on' ? darkThemeStyles.backgroundColor : '',
+										darkTheme === 'on' && darkThemeStyles.backgroundColor,
 								}}>
 								<p>Something went wrong. Please try another image.</p>
 							</Modal.Body>
