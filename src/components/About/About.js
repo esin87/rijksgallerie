@@ -13,13 +13,12 @@ const About = ({ darkTheme }) => {
 			{({ darkThemeStyles }) => {
 				return (
 					<Jumbotron
-						style={
-							darkTheme === 'on' && {
-								backgroundColor: darkThemeStyles.backgroundColor,
-								color: darkThemeStyles.color,
-								border: darkThemeStyles.whiteBorder,
-							}
-						}>
+						style={{
+							backgroundColor:
+								darkTheme === 'on' && darkThemeStyles.backgroundColor,
+							color: darkTheme === 'on' && darkThemeStyles.color,
+							border: darkTheme === 'on' && darkThemeStyles.whiteBorder,
+						}}>
 						<CSSTransitionGroup
 							transitionName='fade'
 							transitionAppear={true}
