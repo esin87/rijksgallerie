@@ -37,18 +37,25 @@ const Navigation = ({ darkTheme, toggleDarkTheme }) => {
 									<Nav.Link>About</Nav.Link>
 								</LinkContainer>
 							</Nav>
+							<Navbar.Text
+								style={{
+									cursor: 'pointer',
+									marginLeft: 'auto',
+								}}>
+								{darkTheme === 'on' ? (
+									<i
+										className='fas fa-toggle-off fa-lg'
+										onClick={toggleDarkTheme}
+										style={{
+											color: '#f7f7f7',
+										}}></i>
+								) : (
+									<i
+										className='fas fa-toggle-on fa-lg'
+										onClick={toggleDarkTheme}></i>
+								)}
+							</Navbar.Text>
 						</Navbar.Collapse>
-						{darkTheme === 'on' ? (
-							<i
-								className='fas fa-toggle-off fa-lg'
-								onClick={toggleDarkTheme}
-								style={{ cursor: 'pointer', color: '#f7f7f7' }}></i>
-						) : (
-							<i
-								className='fas fa-toggle-on fa-lg'
-								onClick={toggleDarkTheme}
-								style={{ cursor: 'pointer' }}></i>
-						)}
 					</Navbar>
 				);
 			}}
